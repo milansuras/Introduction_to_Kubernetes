@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pydeployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mypythonapp
+  template:
+    metadata:
+      labels:
+        app: mypythonapp
+    spec:
+      containers:
+      - name: mypythonapp
+        image: milansuras/pythonapp:v1
+        ports:
+        - containerPort: 5000
+        env:
+        - name: PORT
+          value: "5000"
+
